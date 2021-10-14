@@ -14,8 +14,7 @@ Create a html file called 100transactions.html
 In the head, include the ethers.js 
 
 ```
-
-	
+<script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js"></script>	
 
 ```
 
@@ -38,8 +37,15 @@ The signer is who will sign the transactions off. Recollect that whenever you wa
 We’ll send transactions in a for-loop. In the transaction object we need to send money `to` a particular eth account and the `value` depicts how much.
 
 ```
+	for(let i = 0; i<100; i+=1){
+		console.log(i);
+		document.getElementById("counter").innerHTML = i;
+		const transaction = signer.sendTransaction({
+			to: '0x0D5138BC001aFaEf7Fc679DE66463E3108dc7C26',
+			value: ethers.utils.parseEther('0.00000001')
+		});
+	}
 
-	
 
 ```
 
@@ -50,7 +56,6 @@ Metamask can operate only on `http://` or `https://` websites.
 So you can run the following command in your terminal in the directory where your html file resides : 
 
 ```
-
 python3 -m http.server
 
 ```
@@ -96,13 +101,10 @@ Once you’ve created the react-app, let us add a video. This video will act as 
 ```
 
 //app.js 
-
-
-
-      
-
+<div className="App">
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/EErY75MXYXI"></iframe>
+</div>
     
-
 ```
 
 If you run `npm start`, you’ll see the video embedded. But we want to show the video only if there is a valid subscription that is paying for the services.
@@ -204,13 +206,9 @@ We’ll check if this user already has an outflow. If they don’t have one, the
   if(!subscribed)
 
     return (
-
-      
-
-         subscribed()}>Subscribe
-
-      
-
+      <div className="App">
+        <button onClick={() => subscribed()}>Subscribe</button>
+      </div>
     )
 
 ```
@@ -301,7 +299,6 @@ Here’s the full code we’ve written :
 
 [https://gist.github.com/madhavanmalolan/5a97374b79eea22dedf9e0392739cf48](https://gist.github.com/madhavanmalolan/5a97374b79eea22dedf9e0392739cf48)
 
-#
 ## What next
 Now that you have created a simple subscription. Can you try to modify this to include a pause subscription button directly from the same page?
 
